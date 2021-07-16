@@ -1,0 +1,26 @@
+[general]
+creator=R package 'raster'
+created=2019-11-28 22:15:17
+[georeference]
+nrows=289
+ncols=281
+xmin=95456.4309882737
+ymin=8737869.28494146
+xmax=657456.430988274
+ymax=9315869.28494146
+projection=+proj=utm +zone=37 +south +a=6378249.145 +b=6356514.96582849 +units=m +no_defs
+[data]
+datatype=FLT4S
+byteorder=little
+nbands=1
+bandorder=BIL
+categorical=FALSE
+minvalue=0
+maxvalue=39223
+nodatavalue=-3.4e+38
+[legend]
+legendtype=
+values=
+color=
+[description]
+layername=layer
