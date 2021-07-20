@@ -17,7 +17,8 @@ The data files are described below:
 12.	STzHumanPopMat_CellByMonth_2010-01-01_to_2020-12-31: Human population matrix for the study site in southern Tanzania from 2010 to 2020
 13.	Vacc_coverage_summary_STzdists: Summary statistics of vaccination coverage for the individual district across the study site
 
-Figures that are generated from the scripts and data are provided in subfolder: *figs*
+Figures that are generated from the scripts and data are provided in subfolder: *figs*                                                                        
+
 Output files generated from the scripts and data are provided in subfolder: *output*
 
 
