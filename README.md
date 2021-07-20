@@ -21,4 +21,11 @@ Figures that are generated from the scripts and data are provided in subfolder: 
 
 Output files generated from the scripts and data are provided in subfolder: *output*
 
+The subfolder trees contains scripts for the transmission tree analyses.
+
+The subfolder, cases_and_species_proportion contains scripts for the case proportions, logistic analysis, human and animal population estimates.  The GIS folder within this subfolder has shape files  for the study areas.
+
+Rsubfolder contains helper functions for the scripts
+
+
 
