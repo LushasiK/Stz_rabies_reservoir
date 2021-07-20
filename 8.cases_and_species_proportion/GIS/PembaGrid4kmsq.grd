@@ -1,0 +1,26 @@
+[general]
+creator=R package 'raster'
+created=2021-03-20 10:48:11
+[georeference]
+nrows=34
+ncols=17
+xmin=562243.169487051
+ymin=9394587.69361098
+xmax=596243.169487051
+ymax=9462587.69361098
+projection=+proj=utm +zone=37 +south +ellps=clrk80 +towgs84=-160,-6,-302,0,0,0,0 +units=m +no_defs
+[data]
+datatype=FLT4S
+byteorder=little
+nbands=1
+bandorder=BIL
+categorical=FALSE
+minvalue=1
+maxvalue=1
+nodatavalue=-3.4e+38
+[legend]
+legendtype=
+values=
+color=
+[description]
+layername=layer
