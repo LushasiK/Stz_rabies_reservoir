@@ -2,6 +2,8 @@ Co-authors: Kennedy Lushasi, Sarah Hayes, Katie Hampson
 
 Data and scripts for the Reservoir Dynamics of Rabies in Southeast Tanzania and the roles of cross-species transmission and domestic dog vaccination” for the manuscript submitted to *Journal of applied Ecology*
 
+Identifying features such as names and GPS coordinates have been removed. 
+
 The data files are described below:
 1.	animal_bites. Contains a list of biting animals with their unique identifier  identified across the study areas.
 2.	animal_cases_map: Contains a list of animal rabies cases and their geographical coordinates indication the location of where they were identified.
