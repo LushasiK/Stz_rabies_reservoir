@@ -23,28 +23,27 @@ library(maptools)
 options(stringsAsFactors = F)
 
 # Load functions
-source("ms_R/fig_label.R")
+source("R/fig_label.R")
 
 # Load data
-animal_bites <- read.csv("ms_data/animal_bites.csv")
-animal_cases_map <- read.csv("ms_data/animal_cases_map.csv")
-animal_cases_ts <- read.csv ("ms_data/combined_animal_cases_ts.csv")
-human_bites <- read.csv("ms_data/human_bites.csv")
-human_exposures_ts <- read.csv("ms_data/combined_human_exposures_ts.csv")
-human_deaths_ts <- read.csv("ms_data/combined_human_deaths_ts.csv")
+animal_bites <- read.csv("data/animal_bites.csv")
+animal_cases_map <- read.csv("data/animal_cases_map.csv")
+animal_cases_ts <- read.csv ("data/combined_animal_cases_ts.csv")
+human_bites <- read.csv("data/human_bites.csv")
+human_exposures_ts <- read.csv("data/combined_human_exposures_ts.csv")
+human_deaths_ts <- read.csv("data/combined_human_deaths_ts.csv")
 human_exposures_prop <- read.csv("ms_data/human_exposures_prop.csv")
-STzGrid <- raster("ms_data/gis/STzGrid4kmsq.grd")
-cellData <- read.csv("ms_data/STzCellData_4kmsq.csv")
-dogPopMat <- as.matrix(read.csv("ms_data/dog_population_year.csv", header=FALSE))
+STzGrid <- raster("data/gis/STzGrid4kmsq.grd")
+cellData <- read.csv("data/STzCellData_4kmsq.csv")
+dogPopMat <- as.matrix(read.csv("data/dog_population_year.csv", header=FALSE))
 
 # Load shapefiles
-study_regions <- readOGR("ms_data/gis", "study_regions")
-study_districts <- readOGR("ms_data/gis", "study_districts")
-study_wards <- readOGR("ms_data/gis", "study_wards")
-nearby_countries <- readOGR("ms_data/gis", "nearby_countries")
-prot_areas_lindi <- readOGR("ms_data/gis", "PA_lindi")
-prot_areas_mara <- readOGR("ms_data/gis", "PA_mara")
-
+study_regions <- readOGR("data/gis", "study_regions")
+study_districts <- readOGR("data/gis", "study_districts")
+study_wards <- readOGR("data/gis", "study_wards")
+nearby_countries <- readOGR("data/gis", "nearby_countries")
+prot_areas_lindi <- readOGR("data/gis", "PA_lindi")
+prot_areas_mara <- readOGR("data/gis", "PA_mara")
 # vacc <- read.csv("ms_data/vcMat_Vill_Round_2010-01-01_to_2017-12-31_withAgg.csv")
 
 
@@ -121,7 +120,7 @@ colnames(summary_table) <- c("Type", "Species",
                              "Probable rabies exposures by species (%)",
                              "Deaths due to rabies by species (%)")
 
-write.csv(summary_table, "ms_output/Table_1.csv", row.names=FALSE)
+write.csv(summary_table, "output/Table_1.csv", row.names=FALSE)
 
 #----- FIGURE 2 ----------------------------------------------------------------
 # Study districts and locations of probable rabies cases
@@ -138,7 +137,7 @@ par(mai=c(0.1,0.1,0.2,0.1))
 minDensity <- 0.1
 
 # Begin saving plot code
-pdf("ms_figs/Figure_2.pdf", height=14, width=10)
+pdf("figs/Figure_2.pdf", height=14, width=10)
 
 # Define area for plot 2a
 par(fig=c(0,0.55,0.65,1))
@@ -332,4 +331,4 @@ plot_grid(plot.with.inset,
           label_size = 24)
 
 # Save output
-ggsave("ms_figs/Figure_3.pdf", height=10, width=14)
+ggsave("figs/Figure_3.pdf", height=10, width=14)
