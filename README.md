@@ -12,7 +12,7 @@ The data files are described below:
 7.	Dog_population_year: Contains annual dog population estimate per ward
 8.	human_bites:  Total human bite data traced over the study period
 9.	human_exposures_prop: Contains proportional of human exposures by animal species
-10.	STzCellData_4kmsq:
+10.	STzCellData_4kmsq: 4kmsq grid cells of the study area with unique identifying number for each cell
 11.	STzdog_pop_matrix: Dog population data matrix for the study site
 12.	STzHumanPopMat_CellByMonth_2010-01-01_to_2020-12-31: Human population matrix for the study site in southern Tanzania from 2010 to 2020
 13.	Vacc_coverage_summary_STzdists: Summary statistics of vaccination coverage for the individual district across the study site
