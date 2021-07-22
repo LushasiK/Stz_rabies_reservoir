@@ -23,29 +23,28 @@ library(maptools)
 options(stringsAsFactors = F)
 
 # Load functions
-source("R/fig_label.R")
+source("ms_R/fig_label.R")
 
 # Load data
-animal_bites <- read.csv("data/animal_bites.csv")
-animal_cases_map <- read.csv("data/animal_cases_map.csv")
-animal_cases_ts <- read.csv ("data/combined_animal_cases_ts.csv")
-human_bites <- read.csv("data/human_bites.csv")
-human_exposures_ts <- read.csv("data/combined_human_exposures_ts.csv")
-human_deaths_ts <- read.csv("data/combined_human_deaths_ts.csv")
+animal_bites <- read.csv("ms_data/animal_bites.csv")
+animal_cases_map <- read.csv("ms_data/animal_cases_map.csv")
+animal_cases_ts <- read.csv ("ms_data/combined_animal_cases_ts.csv")
+human_bites <- read.csv("ms_data/human_bites.csv")
+human_exposures_ts <- read.csv("ms_data/combined_human_exposures_ts.csv")
+human_deaths_ts <- read.csv("ms_data/combined_human_deaths_ts.csv")
 human_exposures_prop <- read.csv("ms_data/human_exposures_prop.csv")
-STzGrid <- raster("data/gis/STzGrid4kmsq.grd")
-cellData <- read.csv("data/STzCellData_4kmsq.csv")
-dogPopMat <- as.matrix(read.csv("data/dog_population_year.csv", header=FALSE))
+STzGrid <- raster("ms_data/gis/STzGrid4kmsq.grd")
+cellData <- read.csv("ms_data/STzCellData_4kmsq.csv")
+dogPopMat <- as.matrix(read.csv("ms_data/dog_population_year.csv", header=FALSE))
+vacc_coverage <- read.csv("ms_data/vaccination_coverage.csv")
 
 # Load shapefiles
-study_regions <- readOGR("data/gis", "study_regions")
-study_districts <- readOGR("data/gis", "study_districts")
-study_wards <- readOGR("data/gis", "study_wards")
-nearby_countries <- readOGR("data/gis", "nearby_countries")
-prot_areas_lindi <- readOGR("data/gis", "PA_lindi")
-prot_areas_mara <- readOGR("data/gis", "PA_mara")
-# vacc <- read.csv("ms_data/vcMat_Vill_Round_2010-01-01_to_2017-12-31_withAgg.csv")
-
+study_regions <- readOGR("ms_data/gis", "study_regions")
+study_districts <- readOGR("ms_data/gis", "study_districts")
+study_wards <- readOGR("ms_data/gis", "study_wards")
+nearby_countries <- readOGR("ms_data/gis", "nearby_countries")
+prot_areas_lindi <- readOGR("ms_data/gis", "PA_lindi")
+prot_areas_mara <- readOGR("ms_data/gis", "PA_mara")
 
 #----- TABLE 1 -----------------------------------------------------------------
 # Probable animal rabies cases, human exposures and human rabies deaths by
@@ -120,7 +119,7 @@ colnames(summary_table) <- c("Type", "Species",
                              "Probable rabies exposures by species (%)",
                              "Deaths due to rabies by species (%)")
 
-write.csv(summary_table, "output/Table_1.csv", row.names=FALSE)
+write.csv(summary_table, "ms_output/Table_1.csv", row.names=FALSE)
 
 #----- FIGURE 2 ----------------------------------------------------------------
 # Study districts and locations of probable rabies cases
@@ -137,7 +136,7 @@ par(mai=c(0.1,0.1,0.2,0.1))
 minDensity <- 0.1
 
 # Begin saving plot code
-pdf("figs/Figure_2.pdf", height=14, width=10)
+pdf("ms_figs/Figure_2.pdf", height=14, width=10)
 
 # Define area for plot 2a
 par(fig=c(0,0.55,0.65,1))
@@ -331,4 +330,47 @@ plot_grid(plot.with.inset,
           label_size = 24)
 
 # Save output
-ggsave("figs/Figure_3.pdf", height=10, width=14)
+ggsave("ms_figs/Figure_3.pdf", height=10, width=14)
+
+#----- TABLE S1 ----------------------------------------------------------------
+# Dog vaccination coverage by district
+
+# Transform proportions to percentage
+vacc_coverage = vacc_coverage %>%
+  mutate_at(vars(Round_1:Round_5), .funs = funs(.*100))
+
+# Calculate mean, sd, median and range for each round to 1dp
+col_mean = round(sapply(vacc_coverage[2:6], mean), digits=1)
+col_sd = round(sapply(vacc_coverage[2:6], sd), digits=1)
+col_median = round(sapply(vacc_coverage[2:6], median), digits=1)
+col_range = round(sapply(vacc_coverage[2:6], range), digits=1)
+
+# Round proportions to 1dp
+vacc_coverage = vacc_coverage %>%
+  mutate_at(vars(Round_1:Round_5), funs(as.character(round(., digits=1))))
+
+# Arrange dataframe by district
+vacc_coverage$District = factor(vacc_coverage$District,
+                                levels=c("Kilwa", "Lindi Rural", "Lindi Urban",
+                                         "Liwale", "Masasi", "Masasi Township Authority",
+                                         "Mtwara Rural", "Mtwara Urban", "Nachingwea",
+                                         "Nanyumbu", "Newala", "Ruangwa", "Tandahimba"))
+vacc_coverage = arrange(vacc_coverage, District)
+
+# Add mean, sd, median and range as new rows
+final_vacc_coverage <- vacc_coverage %>%
+  add_row(District = "Mean (standard deviation)",
+          Round_1 = paste0(col_mean[1], " (", col_sd[1], ")"),
+          Round_2 = paste0(col_mean[2], " (", col_sd[2], ")"),
+          Round_3 = paste0(col_mean[3], " (", col_sd[3], ")"),
+          Round_4 = paste0(col_mean[4], " (", col_sd[4], ")"),
+          Round_5 = paste0(col_mean[5], " (", col_sd[5], ")")) %>%
+  add_row(District = "Median (range)",
+          Round_1 = paste0(col_median[1], " (", col_range[1,1], "-", col_range[2,1], ")"),
+          Round_2 = paste0(col_median[2], " (", col_range[1,2], "-", col_range[2,2], ")"),
+          Round_3 = paste0(col_median[3], " (", col_range[1,3], "-", col_range[2,3], ")"),
+          Round_4 = paste0(col_median[4], " (", col_range[1,4], "-", col_range[2,4], ")"),
+          Round_5 = paste0(col_median[5], " (", col_range[1,5], "-", col_range[2,5], ")"))
+
+# Save output
+write.csv(final_vacc_coverage, "ms_output/Table_S2.csv", row.names=FALSE)
