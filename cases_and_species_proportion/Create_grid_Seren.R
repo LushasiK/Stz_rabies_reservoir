@@ -21,11 +21,11 @@ crs36S <- CRS("+proj=utm +zone=36 +south +ellps=clrk80 +towgs84=-160,-6,-302,0,0
 crsLL <- CRS("+proj=longlat")
 
 ## Shapefiles 
-AllTzVill <- readOGR("8.cases_and_species_proportion/GIS/Tanzania_villages", "TZ_Village_2012_pop") ## Administrative areas
+AllTzVill <- readOGR("data/gis/Tanzania_villages", "TZ_Village_2012_pop") ## Administrative areas
 Seren_Vill <- subset(AllTzVill, AllTzVill@data$District_N == "Serengeti")
-TanzDist <- readOGR("8.cases_and_species_proportion/GIS/Tanzania_Districts", "Districts")
+TanzDist <- readOGR("data/gis/Tanzania_Districts", "Districts")
 SerenDist <- subset(TanzDist, TanzDist@data$District_N == "Serengeti")
-PAs <- readShapePoly("8.cases_and_species_proportion/GIS/Protected_areas/TZprotected_areas.shp", proj4string = crs37S) ## Protected areas
+PAs <- readShapePoly("data/gis/Protected_areas/TZprotected_areas.shp", proj4string = crs37S) ## Protected areas
 SerenDist <- spTransform(SerenDist, crs37S)
 Seren_Vill <- spTransform(Seren_Vill, crs37S)
 area(SerenDist)/1000000 # 11157 km2
@@ -92,9 +92,9 @@ plot(PAGrid)
 plot(PAGrid_Seren)
 
 ## Save grids - CUT OUT THE UNNECESSARY CODE FOR PAs and dist grid? 
-#writeRaster(SerenGrid, file = "8.cases_and_species_proportion/GIS/SerenGrid4kmsq", overwrite = T)
-#writeRaster(distGrid, file=paste("8.cases_and_species_proportion/GIS/SerendistGrid4kmsq.grd"), overwrite=T)
-#writeRaster(villGrid, file = "8.cases_and_species_proportion/GIS/Seren4kmsqGridVillGrid", overwrite = T)
+#writeRaster(SerenGrid, file = "data/gis/SerenGrid4kmsq", overwrite = T)
+#writeRaster(distGrid, file=paste("data/gis/SerendistGrid4kmsq.grd"), overwrite=T)
+#writeRaster(villGrid, file = "data/gis/Seren4kmsqGridVillGrid", overwrite = T)
 
 ## Convert STzGrid to polygons and crop to land 
 SerenUTM <- rasterToPolygons(SerenGrid)
@@ -119,8 +119,8 @@ SerenUTM$VillageID <- villGrid[which(!is.na(villGrid@data@values))] # Village nu
 SerenUTM$PA <- PAGrid[which(!is.na(PAGrid@data@values))] # Protected area 1/0
 
 # Save cellGrid
-write.table(as.matrix(SerencellGrid), paste("output/Seren_matrix_4kmsq_cellID.csv"), row.names=F, col.names=F, sep=",")
-writeRaster(SerencellGrid,file=paste("8.cases_and_species_proportion/GIS/Seren_CellGrid"), overwrite=T)
-writeOGR(SerenUTM, dsn=paste("8.cases_and_species_proportion/GIS/Seren_gridded4kmsq"), ("Seren_gridded4kmsq"), driver="ESRI Shapefile", overwrite_layer=T, check_exists=T)
-write.table(SerenUTM@data, paste("output/Seren_CellData4kmsq.csv", sep=""), row.names=F, sep=",")
+#write.table(as.matrix(SerencellGrid), paste("output/Seren_matrix_4kmsq_cellID.csv"), row.names=F, col.names=F, sep=",")
+#writeRaster(SerencellGrid,file=paste("data/gis/Seren_CellGrid"), overwrite=T)
+#writeOGR(SerenUTM, dsn=paste("data/gis/Seren_gridded4kmsq"), ("Seren_gridded4kmsq"), driver="ESRI Shapefile", overwrite_layer=T, check_exists=T)
+#write.table(SerenUTM@data, paste("output/Seren_CellData4kmsq.csv", sep=""), row.names=F, sep=",")
 

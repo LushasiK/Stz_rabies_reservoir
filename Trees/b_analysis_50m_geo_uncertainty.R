@@ -24,6 +24,7 @@ set.seed(4)
 ## Using the modified function to truncate the SI at 0 and incorporate geographical uncertainty
 
 trees = data.frame(read.csv( file="output/sources_geo_uncert_50m.csv",sep=",", header = T))
+
 LL = read.csv(file="output/ll_geo_uncert_50m.csv", sep=",", header = T)
 distprobs = read.csv(file="output/distprobs_geo_uncert_50m.csv", sep=",", header = T)
 

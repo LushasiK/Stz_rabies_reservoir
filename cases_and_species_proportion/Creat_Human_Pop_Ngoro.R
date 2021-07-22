@@ -21,16 +21,16 @@ cell_size <- 2 #km
 #--------------
 
 ## Gridded shapefile
-NgoroUTM <- readOGR("8.cases_and_species_proportion/GIS/Ngoro_gridded4kmsq", "Ngoro_gridded4kmsq")
+NgoroUTM <- readOGR("data/gis/Ngoro_gridded4kmsq", "Ngoro_gridded4kmsq")
 plot(NgoroUTM)
 
 ## Village shapefile
-TzVill <- readOGR("8.cases_and_species_proportion/GIS/Tanzania_villages", "TZ_Village_2012_pop")
+TzVill <- readOGR("data/gis/Tanzania_villages", "TZ_Village_2012_pop")
 Ngorovill <- subset(TzVill, TzVill@data$District_N == "Ngorongoro")
 plot(Ngorovill)
 
 ## District shapefile
-TanzDist <- readOGR("8.cases_and_species_proportion/GIS/Tanzania_Districts", "Districts")
+TanzDist <- readOGR("data/gis/Tanzania_Districts", "Districts")
 NgoroDist <- subset(TanzDist, TanzDist@data$District_N == "Ngorongoro")
 plot(NgoroDist)
 
@@ -41,7 +41,7 @@ Ngoro_pop <-subset(NBSpop, NBSpop$shpDistrict == "Ngorongoro")
 duplicated(Ngoro_pop$shpVillage)
 
 ## bring in the Ngororaster
-NgoroGrid <- raster("8.cases_and_species_proportion/GIS/NgoroCellGrid.grd")
+NgoroGrid <- raster("data/gis/NgoroCellGrid.grd")
 plot(NgoroGrid)
 
 ## Bring i the Worldpop data which is also in a raster. 
@@ -141,7 +141,6 @@ sum(popMat[])
 ## Save human population matrices for simulation 
 
 #write.table(popMat,"output/NgoroHumanPopMat_Cell.csv",row.names=F,col.names=F,sep=",")
-#write.table(popVillMat,"output/NgoroHumanPopMat_VillageByMonth.csv",row.names=F,col.names=F,sep=",")
 
 length(popMat)*4 # This correlates with the area of Ngorongoro according to google. 
 length(popMat[which(popMat!= 0)])*4

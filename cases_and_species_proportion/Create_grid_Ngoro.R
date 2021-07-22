@@ -26,11 +26,11 @@ crs36S <- CRS("+proj=utm +zone=36 +south +ellps=clrk80 +towgs84=-160,-6,-302,0,0
 crsLL <- CRS("+proj=longlat")
 
 ## Load in administrative shapefiles 
-AllTzVill <- readOGR("8.cases_and_species_proportion/GIS/Tanzania_villages", "TZ_Village_2012_pop")
+AllTzVill <- readOGR("data/gis/Tanzania_villages", "TZ_Village_2012_pop")
 Ngoro_Vill <- subset(AllTzVill, AllTzVill@data$District_N == "Ngorongoro")
 plot(Ngoro_Vill)
 
-TanzDist <- readOGR("8.cases_and_species_proportion/GIS/Tanzania_Districts", "Districts")
+TanzDist <- readOGR("data/gis/Tanzania_Districts", "Districts")
 plot(TanzDist)
 NgoroDist <- subset(TanzDist, TanzDist@data$District_N == "Ngorongoro")
 plot(NgoroDist)
@@ -39,7 +39,7 @@ area(NgoroDist)/1000000
 
 ## Protected areas
 
-PAs <- readShapePoly("8.cases_and_species_proportion/GIS/Protected_areas/TZprotected_areas.shp", proj4string = crs37S)
+PAs <- readShapePoly("data/gis/Protected_areas/TZprotected_areas.shp", proj4string = crs37S)
 PAs <- spTransform(PAs, CRS(" +proj=utm +zone=37 +south +ellps=clrk80 +towgs84=-160,-6,-302,0,0,0,0
                             +units=m +no_defs"))
 
@@ -126,9 +126,9 @@ plot(PAGrid)
 plot(PAGrid_Ngoro)
 
 ##Save grids
-#writeRaster(NgoroGrid, file = "8.cases_and_species_proportion/GIS/NgoroGrid4kmsq", overwrite = T)
-#writeRaster(distGrid,file=paste("8.cases_and_species_proportion/GIS/NgorodistGrid4kmsq.grd"),overwrite=T)
-#writeRaster(villGrid, file = "8.cases_and_species_proportion/GIS/Ngoro4kmsqGridVillGrid", overwrite = T)
+#writeRaster(NgoroGrid, file = "data/gis/NgoroGrid4kmsq", overwrite = T)
+#writeRaster(distGrid,file=paste("data/gis/NgorodistGrid4kmsq.grd"),overwrite=T)
+#writeRaster(villGrid, file = "data/gis/Ngoro4kmsqGridVillGrid", overwrite = T)
 
 ## Convert Grid to polygons and crop to land 
 
@@ -168,7 +168,7 @@ plot(NgoroUTM)
 
 # Save cellGrid and STzUTM 
 #write.table(as.matrix(NgorocellGrid),paste("output/Ngoro_matrix_4kmsq_cellID.csv"),row.names=F,col.names=F,sep=",")
-#writeRaster(NgorocellGrid,file=paste("8.cases_and_species_proportion/GIS/Ngoro_CellGrid"),overwrite=T)
-#writeOGR(NgoroUTM, dsn=paste("8.cases_and_species_proportion/GIS/Ngoro_gridded4kmsq"), ("Ngoro_gridded4kmsq"), driver="ESRI Shapefile", overwrite_layer=T, check_exists=T)
+#writeRaster(NgorocellGrid,file=paste("data/gis/Ngoro_CellGrid"),overwrite=T)
+#writeOGR(NgoroUTM, dsn=paste("data/gis/Ngoro_gridded4kmsq"), ("Ngoro_gridded4kmsq"), driver="ESRI Shapefile", overwrite_layer=T, check_exists=T)
 #write.table(NgoroUTM@data,paste("output/Ngoro_CellData4kmsq.csv",sep=""),row.names=F,sep=",")
 

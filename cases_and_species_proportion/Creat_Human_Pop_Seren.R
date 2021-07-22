@@ -22,16 +22,16 @@ cell_size <- 2 #km
 #--------------
 
 ## Gridded shapefile
-SerenUTM <- readOGR("8.cases_and_species_proportion/GIS/Seren_gridded4kmsq", "Seren_gridded4kmsq")
+SerenUTM <- readOGR("data/gis/Seren_gridded4kmsq", "Seren_gridded4kmsq")
 plot(SerenUTM)
 
 ## Village shapefile
-TzVill <- readOGR("8.cases_and_species_proportion/GIS/Tanzania_villages", "TZ_Village_2012_pop")
+TzVill <- readOGR("data/gis/Tanzania_villages", "TZ_Village_2012_pop")
 Serenvill <- subset(TzVill, TzVill@data$District_N == "Serengeti")
 plot(Serenvill)
 
 ## District shapefile
-TanzDist <- readOGR("8.cases_and_species_proportion/GIS/Tanzania_Districts", "Districts")
+TanzDist <- readOGR("data/gis/Tanzania_Districts", "Districts")
 SerenDist <- subset(TanzDist, TanzDist@data$District_N == "Serengeti")
 plot(SerenDist)
 
@@ -40,7 +40,7 @@ plot(SerenDist)
 NBSpop <- read.csv("data/NBS2012_MasterVillagePop_shpmatched.csv")
 Seren_pop <-subset(NBSpop, NBSpop$shpDistrict == "Serengeti")
 
-SerenGrid <- raster("8.cases_and_species_proportion/GIS/SerenCellGrid.grd")
+SerenGrid <- raster("data/gis/SerenCellGrid.grd")
 plot(SerenGrid)
 
 WorldPop12 <- raster("data/tza_ppp_2012.tif")
@@ -213,7 +213,6 @@ sum(popMat[])
 ## Save human population matrices for simulation 
 
 #write.table(popMat,"output/SerenHumanPopMat_Cell.csv",row.names=F,col.names=F,sep=",")
-#write.table(popVillMat,"output/SerenHumanPopMat_VillageByMonth.csv",row.names=F,col.names=F,sep=",")
 
 length(popMat)*4 # This correlates with the area of according to google. 
 # Multiply by 4 as each grid is 4km2. So length popMap is the number of squares and each square is 4km"
