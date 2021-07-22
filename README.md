@@ -2,6 +2,7 @@ Co-authors: Kennedy Lushasi, Sarah Hayes, Katie Hampson
 
 Data and scripts for "Reservoir Dynamics of Rabies in Southeast Tanzania and the roles of cross-species transmission and domestic dog vaccination”.
 Identifying features such as names and GPS coordinates have been removed. 
+Simulated coordinates would therefore be needed for some of the codes to run. 
 
 The data files are described below:
 1.	animal_bites: a list of biting animals with their unique identifier identified across the study areas.
@@ -23,11 +24,12 @@ The data files are described below:
 17.	STzHumanPopMat_CellByMonth_2010-01-01_to_2020-12-31: Human population matrix for the study site in southern Tanzania from 2010 to 2020
 18.	Vacc_coverage_summary_STzdists: Summary statistics of vaccination coverage by district across the study site
 
+To run '6c.create_human_pop_Ngoro' and '6d.create_human_pop_Seren' the file 'data/tza_ppp_2012.tif' is called. This is not included due to size but can be downloaded from the WorldPop website (https://www.worldpop.org/)
+
 Figures that are generated from the scripts and data are stored in subfolder: *figs*                                                                        
 Output files generated from the scripts and data are stored in subfolder: *output*
-Not all outputs are provided due to their size, but they can be created by running the scripts
+Not all outputs are provided due to their size, but they can be created by running the scripts. 
 
 The *R* subfolder contains helper functions for the scripts
-
 
 
