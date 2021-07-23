@@ -37,6 +37,7 @@ STzGrid <- raster("ms_data/gis/STzGrid4kmsq.grd")
 cellData <- read.csv("ms_data/STzCellData_4kmsq.csv")
 dogPopMat <- as.matrix(read.csv("ms_data/dog_population_year.csv", header=FALSE))
 vacc_coverage <- read.csv("ms_data/vaccination_coverage.csv")
+exposure_incidence <- read.csv("ms_data/exposure_incidence.csv")
 
 # Load shapefiles
 study_regions <- readOGR("ms_data/gis", "study_regions")
@@ -374,3 +375,29 @@ final_vacc_coverage <- vacc_coverage %>%
 
 # Save output
 write.csv(final_vacc_coverage, "ms_output/Table_S2.csv", row.names=FALSE)
+
+#----- TABLE S3 ----------------------------------------------------------------
+# Incidence of human rabies exposures
+
+# We only have 7/12 (months of data for?) 2019 so change 2019 population to reflect this
+exposure_incidence$pop_adj = 0
+exposure_incidence$pop_adj <- ifelse(exposure_incidence$Year == "2019",
+                                     exposure_incidence$Pop * (7/12), exposure_incidence$Pop)
+
+# Sum the population and exposures by district
+incidence_table <- exposure_incidence[, 2:7]
+incidence_table <- aggregate(. ~ District, incidence_table, sum)
+
+# Calculate incidence rate per 100000 person years
+incidence_table$per_hun <- round((incidence_table$Total_exposures/incidence_table$pop_adj)*100000, digits=1)
+incidence_table$Dom_per_hun <- round((incidence_table$Domestic/incidence_table$pop_adj)*100000, digits=1)
+incidence_table$Wild_per_hun <- round((incidence_table$Wildlife/incidence_table$pop_adj)*100000, digits=1)
+
+# Finalise table to only some columns
+final_incidence_table = incidence_table %>%
+  dplyr::select(District, "Exposures_per_100000"=per_hun,
+                "Exposures_from_domestic_per_100000"=Dom_per_hun,
+                "Exposures_from_wild_per_100000"=Wild_per_hun)
+
+# Save output
+write.csv(final_incidence_table, "ms_output/Table_S3.csv", row.names=FALSE)
