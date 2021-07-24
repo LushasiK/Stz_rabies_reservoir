@@ -23,6 +23,13 @@ The data files are described below:
 16.	STzdog_pop_matrix: Dog population data matrix for the study site
 17.	STzHumanPopMat_CellByMonth_2010-01-01_to_2020-12-31: Human population matrix for the study site in southern Tanzania from 2010 to 2020
 18.	Vacc_coverage_summary_STzdists: Summary statistics of vaccination coverage by district across the study site
+19.	VaccinationRounds: Shows annual intervals of vaccination campaigns
+20.	Vaccinated_cleaned: Contains number of dogs vaccinated in each round of vaccination campaign in study districts
+21.	Transects_cleaned: Dog vaccination transect data
+22.	NBS2012_VillagePop_matched: Human population data for the study districts
+23.	human_pop_growth: Estimated human population growth rate in the study districts
+24.	EstimatedDogs2015: Contains estimated dog population and vaccination coverage of the study districts
+
 
 To run '6c.create_human_pop_Ngoro' and '6d.create_human_pop_Seren' the file 'data/tza_ppp_2012.tif' is called. This is not included due to size but can be downloaded from the WorldPop website (https://www.worldpop.org/)
 
