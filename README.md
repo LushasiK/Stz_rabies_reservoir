@@ -2,23 +2,20 @@ GENERAL INFORMATION
 1. Title of Dataset: Reservoir Dynamics of Rabies in Southeast Tanzania and the roles of cross-species transmission and domestic dog vaccination
 2. Author Information
 	A.Investigator Contact Information 
-
-		Name: Kennedy Lushasi
-		Institution: Ifakara Health Institute, Dar es salaam-Tanzania
-		Email: klushasi@ihi.or.tz
+             Name: Kennedy Lushasi
+	     Institution: Ifakara Health Institute, Dar es salaam-Tanzania
+	     Email: klushasi@ihi.or.tz
 
 	B.  Investigator Contact Information
-	
 		Name: Sarah Hayes
 		Institution:  Imperial College, London-UK
 		Email: sarah.hayes16@imperial.ac.uk
 
 	C. Alternate Contact Information
-	
 		Name: Katie Hampson
 		Institution: University of Glasgow-Scotland, UK
 		Email: Katie.Hampson@glasgow.ac.uk
-
+		
 3. Date of data collection: From 2010-01-01 to 2019-08-31
 4. Geographic location of data collection: South-eastern Tanzania in the regions of Lindi and Mtwara 
 5. Information about funding sources that supported the collection of the data: This information has been described in the manuscript.
