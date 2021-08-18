@@ -32,6 +32,7 @@ DATA & FILE OVERVIEW
 The data files are described below.
 
 Files within the 'data' folder:
+
 1.	animal_bites: a list of biting animals with their unique identifier reported across the study areas. The column variables are: i) Species - the species of biting animal, ii) Suspect - shows the health status of the biting animal (if probable rabies or not) and iii) ID - the unique identifier for the biting animal
 2.	animal_cases_map: a list of animal rabies cases and their geographical coordinates indicating the location where they were identified. The variable columns include: i) Year - the year the case was observed, ii) Grp_species - a list of animal species but with several wildlife species grouped together as wildlife, iii) Longitude and and iv)  Latitude - the geographical locations of where the animals were found.
 3.	Case_numbers_all_areas: number of animal rabies cases from multiple areas of Tanzania including the study area plus northern Tanzania (Ngorongoro and Serengeti) and Pemba Island. The columns variables are:  i) Year - the year the cases occurred, ii) Species - the animal species in which the cases occurred, iii) Count - the number of rabies cases and iv) District - the district from which the cases were reported.
@@ -53,6 +54,7 @@ Files within the 'data' folder:
 19.	Vaccination_coverage: Shows vaccination coverage in each round of vaccination campaign (rounds 1-5) in the study districts.
 
 Files within the folder 'VaccinationCoverage/data':
+
 20.	VaccinationRounds: Shows the timing for each round of vaccination campaigns. Columns show the start and end dates of each vaccination round from the 1st to the 5th round.
 21.	vaccinated_cleaned: Contains number of dogs vaccinated in each round of the vaccination campaign in each district. The column variables are: i) Correct_Village - the village name, ii) Correct_Ward - the ward name, iii) Correct_District - is the district name, iv) Correct_Region - the region name, v) dateVaccination - the date when vaccination was undertaken in that village, and vi) Dogs - the number of dogs vaccinated on that date in that village.
 22.	transects_cleaned: Dog vaccination transect data. The column variables are: i) Date - the date when transects were conducted, ii) Correct_Village - the village name, iii) Correct_Ward - the ward name, iv) Correct_District - the district name, v) Correct_Region - the region name, vi) Dogs.without.collars - dogs encountered during transect walk without marked collars (representing unvaccinated dogs), vii) Dogs.with.collars - dogs encountered with marked vaccination collars during transect walk, viii) month- number of months from Jan 2011, ix) year - year that transect was conducted, x) DWV - the combined district, ward and village names, xi) DW - the combined district and ward name.
